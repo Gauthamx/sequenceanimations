@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sequencing Animations Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      position: relative;
+      width: 500px;
+      height: 500px;
+    }
+
+    img {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      border-radius: 10px;
+      transform-origin: center center;
+    }
+
+    #alice1 {
+      top: 0;
+      left: 0;
+    }
+
+    #alice2 {
+      top: 175px;
+      left: 175px;
+    }
+
+    #alice3 {
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <img id="alice1" src="alice.svg" alt="alice 1" />
+    <img id="alice2" src="alice.svg" alt="alice 2" />
+    <img id="alice3" src="alice.svg" alt="alice 3" />
+  </div>
+
+  <script>
+    const aliceTumbling = [
+      { transform: "rotate(0) scale(1)" },
+      { transform: "rotate(360deg) scale(1)" },
+    ];
+
+    const aliceTiming = {
+      duration: 2000,
+
+    };
+
+    const alice1 = document.querySelector("#alice1");
+    const alice2 = document.querySelector("#alice2");
+    const alice3 = document.querySelector("#alice3");
+
+    async function runAnimations() {
+      await alice1.animate(aliceTumbling, aliceTiming).finished;
+      await alice2.animate(aliceTumbling, aliceTiming).finished;
+      await alice3.animate(aliceTumbling, aliceTiming).finished;
+    }
+
+    runAnimations();
+  </script>
+
+</body>
+
+</html>
